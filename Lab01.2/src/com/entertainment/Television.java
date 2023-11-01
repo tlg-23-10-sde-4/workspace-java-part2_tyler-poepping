@@ -1,8 +1,13 @@
 package com.entertainment;
 
+import com.entertainment.client.TelevisionTestSort;
+
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Television {
+import static java.util.Arrays.compare;
+
+public class Television implements Comparable<Television> {
     private String brand;
     private Integer volume;
 
@@ -15,6 +20,11 @@ public class Television {
 
     // Methods
     private Tuner tuner = new Tuner();
+
+    @Override
+    public int compareTo(Television tv) {
+        return this.getBrand().compareTo(tv.getBrand());
+    }
 
     @Override
     public boolean equals(Object obj) {

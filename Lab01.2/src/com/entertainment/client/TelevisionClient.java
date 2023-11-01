@@ -4,22 +4,28 @@ import com.entertainment.Television;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class TelevisionClient {
     public static void main(String[] args) {
-        Television tv1 = new Television();
-        Television tv2 = new Television("RCA", 20);
+        Television tv1 = new Television("Sony", 50);
+        Television tv2 = new Television("Sony", 50);
+        Television tv3 = new Television("Samsung", 32);
+        Television tv4 = new Television("LG", 12);
 
-        tv1.setBrand("Null");
-        tv1.setVolume(20);
+        Set<Television> tvs = new TreeSet<>();
+        tvs.add(tv1);
+        tvs.add(tv2);
+        tvs.add(tv3);
+        tvs.add(tv4);
 
         System.out.println(tv2.equals(tv1));
         System.out.println(tv1.hashCode());
         System.out.println(tv2.hashCode());
 
-        Set<Television> tvs = new HashSet<>();
-        tvs.add(tv2);
-        tvs.add(tv1);
-        System.out.println(tvs);
+
+        for(Television tv : tvs) {
+            System.out.println(tv);
+        }
      }
 }
