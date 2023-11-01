@@ -1,5 +1,7 @@
 package com.entertainment;
 
+import java.util.Objects;
+
 public class Television {
     private String brand;
     private Integer volume;
@@ -18,9 +20,14 @@ public class Television {
     public boolean equals(Object obj) {
         if(obj instanceof Television) {
             Television tv = (Television) obj;
-            return this.getBrand().equals(tv.getBrand()) && this.getVolume().equals(tv.getVolume());
+            return Objects.equals(this.getBrand(), tv.getBrand()) && Objects.equals(this.getVolume(), tv.getVolume()); // Null safe check
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getVolume(), getBrand());
     }
 
     public int getCurrentChannel() {
