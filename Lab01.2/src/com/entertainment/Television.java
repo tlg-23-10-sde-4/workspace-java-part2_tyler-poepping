@@ -1,11 +1,6 @@
 package com.entertainment;
 
-import com.entertainment.client.TelevisionTestSort;
-
-import java.util.Comparator;
 import java.util.Objects;
-
-import static java.util.Arrays.compare;
 
 public class Television implements Comparable<Television> {
     private String brand;
@@ -21,9 +16,17 @@ public class Television implements Comparable<Television> {
     // Methods
     private Tuner tuner = new Tuner();
 
+    // Natural order decided by String,
+    // Secondary of volume, otherwise this will not be accepted by sets
+    // To have the same item in TreeSet with alternate values we must give the second comparator
     @Override
     public int compareTo(Television tv) {
-        return this.getBrand().compareTo(tv.getBrand());
+        int result = this.getBrand().compareTo(tv.getBrand());
+
+        if(result == 0) { // Same brand
+            return this.getVolume().compareTo(tv.getVolume());
+        }
+        return result;
     }
 
     @Override
