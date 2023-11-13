@@ -14,7 +14,7 @@ import org.junit.Test;
 
 public class StringSortTest {
   
-  private List<String> names = Arrays.asList("Jason", "Martin", "Jack", "Mary", "Jill", "Frederick", "Laurie", "Ed");
+  private final List<String> names = Arrays.asList("Jason", "Martin", "Jack", "Mary", "Jill", "Frederick", "Laurie", "Ed");
   
   @Test
   public void testStringListSort() {
@@ -31,7 +31,7 @@ public class StringSortTest {
     
     System.out.println("Increasing length - lambda:");
     // TODO: call names.sort() and pass in an "expression" lambda
-    // hint: a compatible lambda will have this form:
-    //       (obj1, obj2) -> expression-that-evaluates-to-int
+    names.sort((n1,n2) -> Integer.compare(n1.length(),n2.length()));
+    System.out.println(names);
   }
 }
