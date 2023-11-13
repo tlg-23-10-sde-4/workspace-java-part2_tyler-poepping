@@ -8,7 +8,7 @@
 package com.javatunes.thread;
 
 // TODO: extend the Thread class
-public class MessagePrinter extends Thread {
+public class MessagePrinter implements Runnable {
     public static int id = 0;
     private final String message;
     private final int interval;
@@ -19,7 +19,7 @@ public class MessagePrinter extends Thread {
         this.message = message;
         this.interval = interval;
         this.count = count;
-        this.setName("MSG Printer" + ++id);
+
     }
 
     /**
@@ -34,7 +34,7 @@ public class MessagePrinter extends Thread {
     @Override
     public void run() {
         for (int i = 0; i < count; i++) {
-            System.out.println(message);
+            System.out.println(Thread.currentThread().getName() + " " + message);
             try {
                 Thread.sleep(interval);
             } catch (InterruptedException e) {
