@@ -1,10 +1,11 @@
 package gov.irs;
 
 public interface IRS {
-    void collectTaxes();
-    void register(TaxPayer taxPayer);
+    public void collectTaxes();
+    public void register(TaxPayer payer);
 
-    static IRS getInstance() {
+    // static factory method to obtain the instance
+    public static IRS getInstance() {
         return IRSEnum.INSTANCE;
     }
 }

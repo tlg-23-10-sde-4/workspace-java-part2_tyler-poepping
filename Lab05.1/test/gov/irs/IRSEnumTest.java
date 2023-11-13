@@ -16,7 +16,7 @@ public class IRSEnumTest {
 
     @Test
     public void normalClientUsage() {
-        IRSEnum irs = IRSEnum.getInstance();  // client can also say "IRSEnum.INSTANCE"
+        IRSEnum irs = IRSEnum.INSTANCE;  // client can also say "IRSEnum.INSTANCE"
         irs.register(new Corporation("JavaTunes"));
         irs.collectTaxes();
     }
