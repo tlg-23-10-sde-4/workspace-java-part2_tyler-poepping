@@ -13,7 +13,7 @@ import java.util.Scanner;
  * and does all user prompting.
  */
 public class DuckRaceApp {
-    private final Board board = new Board();
+    private final Board board = Board.getInstance();
     private final BoardView boardView = new BoardView(board);
     private final Scanner scanner = new Scanner(System.in);
     private final int maxId = board.maxId();
