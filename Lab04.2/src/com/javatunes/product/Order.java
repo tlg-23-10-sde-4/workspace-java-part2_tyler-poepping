@@ -9,7 +9,6 @@
 package com.javatunes.product;
 
 import java.util.Collection;
-import java.util.List;
 
 public class Order {
     private final String id;
@@ -19,17 +18,17 @@ public class Order {
     }
 
     /**
-     * TODO:
      * get the items from the cart and iterate over them, print each item's product code
      * get cart total and print
      */
-    public <T extends Product> void processCart(ShoppingCart<T> cart) {
-        System.out.println("Order: " + getId());
-        for(Product product : cart.allItems()) {
+    public void processCart(ShoppingCart<? extends Product> cart) {
+        System.out.println("Order " + getId() + " contains the following:");
+
+        for (Product product : cart.allItems()) {
             System.out.println(product.getCode());
         }
 
-        System.out.println(cart.total());
+        System.out.println("Order Total: " + cart.total());
     }
 
     public String getId() {

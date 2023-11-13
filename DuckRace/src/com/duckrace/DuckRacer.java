@@ -3,19 +3,26 @@ package com.duckrace;
 import com.duckrace.enumeration.Reward;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class DuckRacer {
-    private int id;
+    private final int id;
     private String name;
-    List<Reward> rewards;
+    private final Collection<Reward> rewards = new ArrayList<>();
 
-    public DuckRacer(int id, String name, List<Reward> rewards) {
+    public DuckRacer(int id, String name) {
         this.id = id;
-        this.name = name;
-        this.rewards = rewards;
+        setName(name);
     }
 
+    // business ("action") methods
+    public void win(Reward reward) {
+        rewards.add(reward);
+    }
+
+    // accessor methods
     public int getId() {
         return id;
     }
@@ -28,25 +35,23 @@ public class DuckRacer {
         this.name = name;
     }
 
-    public List<Reward> getRewards() {
-        return List.copyOf(rewards); // Prevents user from adding rewards without calling "win" method
-    }
-
-    public void win(Reward reward) {
-        rewards.add(reward);
-    }
-
+    // derived property
     public int getWins() {
         return rewards.size();
     }
 
+    /*
+     * NOTE: instead of returning a direct reference to the collection,
+     * we return a "read-only" view.
+     */
+    public Collection<Reward> getRewards() {
+        return Collections.unmodifiableCollection(rewards);  // returns a read-thru wrapper
+        // return List.copyOf(rewards);  // returns a snapshot
+    }
+
     @Override
     public String toString() {
-        return "DuckRacer{" +
-                "id=" + getId() +
-                ", name='" + getName() + '\'' +
-                ", wins=" + getWins() +
-                ", rewards=" + getRewards() +
-                '}';
+        return String.format("%s: id=%s, name=%s, wins=%s, rewards=%s",
+                getClass().getSimpleName(), getId(), getName(), getWins(), getRewards());
     }
 }
